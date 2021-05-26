@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Md5 } from 'ts-md5/dist/md5';
 
+
 export interface Marvel {
   data: {
     results: any;
-  };
+  }
 }
 
 @Injectable({
@@ -15,17 +16,21 @@ export class MarvelService {
 
   constructor(
     private httpClient: HttpClient
-  ) { };
-
-  private marvelCharacterUrl = `https://gateway.marvel.com:443/v1/public/characters`;
-  private publicKey = `a632b3497a2c0d4ab1c901b3327919f2`;
-  private privateKey = `21540babdb39e1cb981ceeeae506f4192d2ac835`;
+  ) {
+    this.httpOptions
+  };
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
+
+
+  private marvelCharacterUrl = `https://gateway.marvel.com:443/v1/public/characters`;
+  private publicKey = `a632b3497a2c0d4ab1c901b3327919f2`;
+  private privateKey = `21540babdb39e1cb981ceeeae506f4192d2ac835`;
+
 
 
   private getTimeStamp() {

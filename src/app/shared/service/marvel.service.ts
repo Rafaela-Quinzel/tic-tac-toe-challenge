@@ -52,9 +52,10 @@ export class MarvelService {
     const hash = this.getHash(timeStamp);
     const limit = 10;
     let url = `${this.marvelCharacterUrl}?limit=${limit}&ts=${timeStamp}&apikey=${this.publicKey}&hash=${hash}`;
-    if (name) {
-      url += `&nameStartsWith=${name}`;
-    }
+    // if (name) {
+    //   url += `&nameStartsWith=${name}`;
+    // }
+//console.log(url)
     return this.httpClient.get<Marvel>(url);
   }
 

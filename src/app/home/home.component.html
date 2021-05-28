@@ -7,6 +7,13 @@
       COMECE AGORA!
     </button>
   </div>
+  <div class="background-modal" style="display: none;">
+    <div class="modal">
+      <select>
+        <option>{{namesList}}</option>
+      </select>
+    </div>
+  </div>
 
   <div class="wapper">
 
@@ -15,40 +22,32 @@
       <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/017lok_ons_crd_02.jpg" />
     </div>
 
+
     <div class="mainContainer">
       <div class="competitors">
-        <p class="player" id="player1">Nome</p>
+        <div class="player" id="player1"></div>
         <p>VS</p>
-        <p class="player" id="player2">Nome</p>
+        <div class="player" id="player2"></div>
       </div>
 
       <div class="boardContainer">
-        <div class="cell" id="1">
-          <p>O</p>
+        <div class="cell" id="0" (click)="chooseCell('0')">
         </div>
-        <div class="cell" id="2">
-          <p>X</p>
+        <div class="cell" id="1" (click)="chooseCell('1')">
         </div>
-        <div class="cell" id="3">
-          <p>O</p>
+        <div class="cell" id="2" (click)="chooseCell('2')">
         </div>
-        <div class="cell" id="4">
-          <p>X</p>
+        <div class="cell" id="3" (click)="chooseCell('3')">
         </div>
-        <div class="cell" id="5">
-          <p>X</p>
+        <div class="cell" id="4" (click)="chooseCell('4')">
         </div>
-        <div class="cell" id="6">
-          <p>O</p>
+        <div class="cell" id="5" (click)="chooseCell('5')">
         </div>
-        <div class="cell" id="7">
-          <p>X</p>
+        <div class="cell" id="6" (click)="chooseCell('6')">
         </div>
-        <div class="cell" id="8">
-          <p>X</p>
+        <div class="cell" id="7" (click)="chooseCell('7')">
         </div>
-        <div class="cell" id="9">
-          <p>X</p>
+        <div class="cell" id="8" (click)="chooseCell('8')" ngModel ng-maxlength="maxlength">
         </div>
       </div>
     </div>

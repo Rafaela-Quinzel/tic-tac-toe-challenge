@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MarvelService } from '../shared/service/marvel.service'
 
 
@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   secondImagePath: string;
   secondCharacter: any;
   namesList: string[];
+  names: any[];
 
   constructor(
     public marvelService: MarvelService
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.namePlayer2 = "";
     this.player1 = 'X';
     this.player2 = 'O';
-    this.namesList = []
+    this.namesList = [""]
     this.isEnabled = false;
     this.chooseFirstPlayer = Math.random() * 2;
     this.checkShift = true;
@@ -55,12 +56,11 @@ export class HomeComponent implements OnInit {
     ];
 
     this.listGetCharacters = [];
+    this.names = [];
     this.spinner = false;
     this.firstImagePath = ""
     this.secondImagePath = ""
     this.secondCharacter = ""
-
-    let shift = this.checkShift ? this.player1 : this.player2
 
   }
 
@@ -68,14 +68,35 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   startGame(): void {
-    let name = ""
+    this.openModalSelect()
     this.createPlayerOne()
     this.createPlayerTwo()
-    this.getCharacters(name)
+    this.getCharacters()
     this.choosePlayer()
-    this.selectCharacter()
+  }
+
+  openModalSelect() {
+    const showModal = (<HTMLInputElement>document.querySelector(".background-modal"));
+    showModal.style.display = "flex";
+  }
+
+
+  getCharacters() {
+    this.marvelService.getCharacters().subscribe(
+      response => {
+        const responseList = response.data.results;
+        this.listGetCharacters = responseList;
+        this.spinner = false;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  selectCharacter() {
+
   }
 
   createPlayerOne() {
@@ -159,29 +180,6 @@ export class HomeComponent implements OnInit {
 
   disableCell() {
     this.isEnabled = !this.isEnabled;
-  }
-
-  getCharacters(name: string) {
-    this.marvelService.getCharacters(name).subscribe(
-      response => {
-        const responseList = response.data.results;
-        this.listGetCharacters = responseList;
-        this.spinner = false;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  selectCharacter() {
-    let a = this.listGetCharacters.map( (item: any) => {
-      //console.log(typeof item.name)
-      return this.namesList = item.name
-    })
-    //this.namePlayer2 = this.namesList
-    console.log(this.namePlayer2)
- 
   }
 
 }

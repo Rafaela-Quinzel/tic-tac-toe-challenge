@@ -5,7 +5,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 export interface Marvel {
   data: {
-    results: any;
+    results: any[];
   }
 }
 
@@ -47,15 +47,11 @@ export class MarvelService {
     return hash;
   }
 
-  public getCharacters(name: string) {
+  public getCharacters() {
     const timeStamp = this.getTimeStamp();
     const hash = this.getHash(timeStamp);
-    const limit = 10;
+    const limit = 100;
     let url = `${this.marvelCharacterUrl}?limit=${limit}&ts=${timeStamp}&apikey=${this.publicKey}&hash=${hash}`;
-    // if (name) {
-    //   url += `&nameStartsWith=${name}`;
-    // }
-//console.log(url)
     return this.httpClient.get<Marvel>(url);
   }
 

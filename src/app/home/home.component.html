@@ -7,11 +7,15 @@
       COMECE AGORA!
     </button>
   </div>
-  <div class="background-modal" style="display: none;">
-    <div class="modal">
-      <select>
-        <option>{{namesList}}</option>
+  <div class="background-modal" style="display: none;" id="test">
+    <div class="modal" >
+      <h4>Selecione um personagem</h4>
+      <select >
+        <option>Escolha um personagem</option>
+        <option *ngFor="let usuario of listGetCharacters">{{usuario.name}}</option>
       </select>
+      <button type="submit">Selecionar</button>
+
     </div>
   </div>
 
